@@ -15,6 +15,49 @@
         <input type="text" id="user-input" class="user-input" placeholder="Type your message...">
         <button id="send-button" class="send-button">Send</button>
     </div>
-    <script src="script.js"></script>
+    <script>
+        // Get the user's name from local storage
+        let name = localStorage.getItem('name');
+
+        // If the name is not set, prompt the user for their name
+        if (!name) {
+            name = prompt('Please enter your name:');
+            localStorage.setItem('name', name);
+        }
+
+        // Display a personalized greeting
+        const chatBox = document.getElementById('chat-box');
+        const greeting = document.createElement('div');
+        greeting.classList.add('chat-message', 'bot-message');
+        greeting.textContent = `Hello, ${name}! How can I assist you today?`;
+        chatBox.appendChild(greeting);
+
+        // Handle user input
+        const userInput = document.getElementById('user-input');
+        const sendButton = document.getElementById('send-button');
+
+        sendButton.addEventListener('click', () => {
+            const userMessage = userInput.value.trim();
+
+            if (userMessage === '') {
+                return;
+            }
+
+            const message = document.createElement('div');
+            message.classList.add('chat-message', 'user-message');
+            message.textContent = userMessage;
+            chatBox.appendChild(message);
+
+            // You can add code here to process the user's message and generate a response
+            // For now, let's just echo the user's message back as a dummy response
+            const response = document.createElement('div');
+            response.classList.add('chat-message', 'bot-message');
+            response.textContent = `You said: ${userMessage}`;
+            chatBox.appendChild(response);
+
+            // Clear the input field
+            userInput.value = '';
+        });
+    </script>
 </body>
 </html>
