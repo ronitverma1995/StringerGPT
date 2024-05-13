@@ -5,43 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StringerGPT Chatbot</title>
-    <!-- Add your custom styles here -->
+    <!-- Add Dialogflow Messenger styles -->
     <style>
-        /* Custom styles for the chat container */
-        .chat-container {
-            max-width: 350px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ccc;
+        /* Set the position and size of the chatbot container */
+        .df-messenger-wrapper {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            height: 500px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
         }
 
-        /* Style for the chat title */
-        .chat-title {
-            font-size: 1.2em;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        /* Style for the chat iframe */
-        iframe {
+        /* Set the position and size of the iframe within the container */
+        .df-messenger-wrapper iframe {
             width: 100%;
-            height: 400px; /* Adjust the height as needed */
+            height: 100%;
             border: none;
         }
     </style>
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-title">StringerGPT Chatbot</div>
-        <!-- Dialogflow Messenger integration -->
-        <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
-        <df-messenger
-          intent="WELCOME"
-          chat-title="StringerGPT"
-          agent-id="e5180bc1-e468-4815-9dba-bbfec424f203" <!-- Replace with your agent ID -->
-          language-code="en"
-        ></df-messenger>
-    </div>
+    <!-- Include the Dialogflow Messenger script -->
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+    <!-- Initialize the Dialogflow Messenger with your agent ID -->
+    <df-messenger
+        intent="WELCOME"
+        chat-title="StringerGPT"
+        agent-id="e5180bc1-e468-4815-9dba-bbfec424f203" <!-- Replace with your agent ID -->
+        language-code="en"
+    ></df-messenger>
 </body>
 </html>
