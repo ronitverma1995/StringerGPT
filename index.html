@@ -6,20 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StringerGPT Chatbot</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 </head>
 <body>
     <div class="chat-container">
-        <div class="chat-box" id="chat-box">
-            <!-- This div is where Dialogflow Messenger will be rendered -->
-            <df-messenger
-              chat-title="StringerGPT Chatbot"
-              agent-id="e5180bc1-e468-4815-9dba-bbfec424f203"
-              language-code="en"
-            ></df-messenger>
-        </div>
-        <input type="text" id="user-input" class="user-input" placeholder="Type your message...">
-        <button id="send-button" class="send-button">Send</button>
+        <!-- Replace the existing chat-box with the Dialogflow Web Demo iframe -->
+        <iframe
+            allow="microphone;"
+            width="350"
+            height="430"
+            src="https://console.dialogflow.com/api-client/demo/embedded/e5180bc1-e468-4815-9dba-bbfec424f203">
+        </iframe>
     </div>
     <script>
         // Get the user's name from local storage
@@ -31,39 +27,13 @@
             localStorage.setItem('name', name);
         }
 
-        // Display a personalized greeting
+        // Display a personalized greeting (optional)
+        // This part can be removed if you only want to use the Dialogflow Web Demo
         const chatBox = document.getElementById('chat-box');
         const greeting = document.createElement('div');
         greeting.classList.add('chat-message', 'bot-message');
         greeting.textContent = `Hello, ${name}! How can I assist you today?`;
         chatBox.appendChild(greeting);
-
-        // Handle user input
-        const userInput = document.getElementById('user-input');
-        const sendButton = document.getElementById('send-button');
-
-        sendButton.addEventListener('click', () => {
-            const userMessage = userInput.value.trim();
-
-            if (userMessage === '') {
-                return;
-            }
-
-            const message = document.createElement('div');
-            message.classList.add('chat-message', 'user-message');
-            message.textContent = userMessage;
-            chatBox.appendChild(message);
-
-            // You can add code here to process the user's message and generate a response
-            // For now, let's just echo the user's message back as a dummy response
-            const response = document.createElement('div');
-            response.classList.add('chat-message', 'bot-message');
-            response.textContent = `You said: ${userMessage}`;
-            chatBox.appendChild(response);
-
-            // Clear the input field
-            userInput.value = '';
-        });
     </script>
 </body>
 </html>
