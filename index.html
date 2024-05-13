@@ -5,59 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StringerGPT Chatbot</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Add your custom styles here -->
+    <style>
+        /* Custom styles for the chat container */
+        .chat-container {
+            max-width: 350px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Style for the chat title */
+        .chat-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Style for the chat iframe */
+        iframe {
+            width: 100%;
+            height: 400px; /* Adjust the height as needed */
+            border: none;
+        }
+    </style>
 </head>
 <body>
     <div class="chat-container">
-        <div class="chat-box" id="chat-box">
-            <div class="chat-message bot-message">Welcome to StringerGPT! How can I help you today?</div>
-        </div>
-        <input type="text" id="user-input" class="user-input" placeholder="Type your message...">
-        <button id="send-button" class="send-button">Send</button>
+        <div class="chat-title">StringerGPT Chatbot</div>
+        <!-- Dialogflow Messenger integration -->
+        <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+        <df-messenger
+          intent="WELCOME"
+          chat-title="StringerGPT"
+          agent-id="e5180bc1-e468-4815-9dba-bbfec424f203" <!-- Replace with your agent ID -->
+          language-code="en"
+        ></df-messenger>
     </div>
-    <script>
-        // Get the user's name from local storage
-        let name = localStorage.getItem('name');
-
-        // If the name is not set, prompt the user for their name
-        if (!name) {
-            name = prompt('Please enter your name:');
-            localStorage.setItem('name', name);
-        }
-
-        // Display a personalized greeting
-        const chatBox = document.getElementById('chat-box');
-        const greeting = document.createElement('div');
-        greeting.classList.add('chat-message', 'bot-message');
-        greeting.textContent = `Hello, ${name}! How can I assist you today?`;
-        chatBox.appendChild(greeting);
-
-        // Handle user input
-        const userInput = document.getElementById('user-input');
-        const sendButton = document.getElementById('send-button');
-
-        sendButton.addEventListener('click', () => {
-            const userMessage = userInput.value.trim();
-
-            if (userMessage === '') {
-                return;
-            }
-
-            const message = document.createElement('div');
-            message.classList.add('chat-message', 'user-message');
-            message.textContent = userMessage;
-            chatBox.appendChild(message);
-
-            // You can add code here to process the user's message and generate a response
-            // For now, let's just echo the user's message back as a dummy response
-            const response = document.createElement('div');
-            response.classList.add('chat-message', 'bot-message');
-            response.textContent = `You said: ${userMessage}`;
-            chatBox.appendChild(response);
-
-            // Clear the input field
-            userInput.value = '';
-        });
-    </script>
 </body>
 </html>
